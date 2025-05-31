@@ -1,26 +1,76 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
+import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
 
 const ApplyNow = () => {
+    const { id } = useParams();
+    const { user } = useAuth();
+    
+
+    const handleJobApply = e => {
+        e.preventDefault();
+        const form = e.target;
+        const linkedIn = form.linkedIn.value;
+        const gitHub = form.gitHub.value;
+        const resume = form.resume.value;
+        console.log(linkedIn, gitHub, resume);
+
+        const application = {
+            jobId : id,
+            applicant: user.email,
+            linkedIn,
+            gitHub,
+            resume,
+        };
+        console.log(application);
+
+        axios.post(`http://localhost:3000/applications`, application)
+            .then(data => {
+                console.log(data.data);
+            }).catch(error => {
+                console.log(error);
+            })
+        
+
+    }
     return (
-        <div className='flex flex-col items-center mt-10'>
+        <div className='flex flex-col items-center my-10'>
             <h1 className="text-3xl font-bold">Apply now</h1>
-            <p className="">See
-                <Link to={``}> Details </Link>
-                about the Job
+            <p className="mt-3">See   
+                 <Link className='underline text-blue-500' to={`/jobsDetails/${id}`}>
+                 Details </Link>  
+                 about the Job
             </p>
-            <form className='mt-8'>
+            <form
+                onSubmit={handleJobApply}
+                className='mt-8'>
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
 
-                    <label className="label">Title</label>
-                    <input type="text" className="input" placeholder="My awesome page" />
+                    <label className="label">LinkedIn Profile Link</label>
+                    <input 
+                    type="url" 
+                    name='linkedIn'
+                    className="input" 
+                    placeholder="My awesome page" />
 
-                    <label className="label">Slug</label>
-                    <input type="text" className="input" placeholder="my-awesome-page" />
+                    <label className="label">GitHub Profile Link</label>
+                    <input 
+                    type="url" 
+                    name='gitHub'
+                    className="input" 
+                    placeholder="my-awesome-page" />
 
-                    <label className="label">Author</label>
-                    <input type="text" className="input" placeholder="Name" />
+                    <label className="label">Resume Link</label>
+                    <input 
+                    type="url" 
+                    name='resume'
+                    className="input" 
+                    placeholder="Name" />
+
+                    <input type="submit" className='btn text-gray-600' value='Apply for Job' />
                 </fieldset>
+
             </form>
         </div>
     );
