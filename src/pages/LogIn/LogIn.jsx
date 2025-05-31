@@ -3,9 +3,13 @@ import { AuthContext } from '../../context/AuthContext';
 import Lottie from 'lottie-react';
 import loginLottie from "../../assets/lotties/LogIn-lottie.json"
 import SocialLogIn from '../Shared/SocialLogIn';
+import { useLocation, useNavigate } from 'react-router';
 
 const LogIn = () => {
-    const { signInUser } = use(AuthContext)
+    const { signInUser } = use(AuthContext);
+    const location = useLocation();
+    const from = location.state || '/';
+    const navigate = useNavigate();
     const handleRegister = e => {
 
         e.preventDefault();
@@ -17,6 +21,7 @@ const LogIn = () => {
         //firebase user Creation
         signInUser(email, password)
             .then(result => {
+                navigate(from)
                 console.log(result.user)
             })
             .catch(error => {
@@ -55,7 +60,7 @@ const LogIn = () => {
                                 <button className="btn btn-neutral mt-4">Log In</button>
                             </fieldset>
                         </form>
-                        <SocialLogIn></SocialLogIn>
+                        <SocialLogIn from={from}></SocialLogIn>
                     </div>
                 </div>
             </div>

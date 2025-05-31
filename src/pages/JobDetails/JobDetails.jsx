@@ -36,7 +36,7 @@ const JobDetails = () => {
                     <h2 className="text-3xl font-bold ">{title}</h2>
                     <p className="text-sm font-medium text-stone-500 flex items-center mt-1">{location}</p>
                 </div>
-                <Link>
+                <Link to={`/jobApply/${_id}`}>
                     <button className='btn bg-blue-500 text-white flex items-center'><BsPatchCheckFill /> Apply nw</button>
                 </Link>
             </div>
@@ -96,17 +96,19 @@ const JobDetails = () => {
                 }
             </div>
             <hr className='my-5 border-t border-blue-300' />
-            <div className="">
+            <div className="mb-4 ">
                 <p className="font-bold text-lg underline">Contact Authority:</p>
                 <p className="">
                     <span className="font-medium"><MdOutlineAdminPanelSettings /> HR Name: </span>
                     {hr_name}
                 </p>
-                <p className="">
-                    <span className="font-medium flex items-center"><FiMail /> HR Email: </span>
-                    {hr_email}
+                <p className="flex gap-2">
+                    <span className="font-medium flex items-center gap-2"><FiMail /> HR Email: </span> {hr_email}
                 </p>
             </div>
+            <Link to={`/jobApply/${_id}`}>
+                <button className='btn bg-blue-500 text-white flex items-center'><BsPatchCheckFill /> Apply nw</button>
+            </Link>
         </div>
     );
 };
