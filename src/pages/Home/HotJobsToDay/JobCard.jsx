@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React from 'react';
 import { LuMapPin } from "react-icons/lu";
 import { Link } from 'react-router';
@@ -7,19 +8,19 @@ const JobCard = ({ job }) => {
         title,
         company_logo,
         description,
-        category,
+        applicationDeadline,
         requirements,
         company,
         location,
         _id,
         salaryRange
     } = job;
-
+    // console.log()
     return (
         <div className='border  bg-blue-50 border-gray-300 hover:bg-white hover:translate-1 rounded-xl px-3 py-4 flex flex-col gap-3 justify-between'>
             <div className="flex">
                 <div className="w-16">
-                    <img src={company_logo} alt="" />
+                    <img src={company_logo } alt="" />
                 </div>
                 <div className="">
                     <h3 className='text-2xl font-bold'>{company}</h3>
@@ -27,6 +28,7 @@ const JobCard = ({ job }) => {
                 </div>
             </div>
             <h4 className="text-2xl font-bold">{title}</h4>
+            <p className="">Last Date: {applicationDeadline}</p>
             <p className="">{description}</p>
             <div className="flex flex-wrap gap-1 text-sm ">
                 {
@@ -41,7 +43,7 @@ const JobCard = ({ job }) => {
             <div className="card-actions justify-end">
                 <Link to={`/jobsDetails/${_id}`}>
                     <button className="btn  bg-blue-100 hover:bg-blue-500 hover:text-white">
-                        Apply Now
+                        Job Details
                     </button>
                 </Link>
             </div>
