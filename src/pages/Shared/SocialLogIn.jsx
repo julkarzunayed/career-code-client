@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { form } from 'motion/react-client';
 import { useNavigate } from 'react-router';
 
 const SocialLogIn = ({from}) => {

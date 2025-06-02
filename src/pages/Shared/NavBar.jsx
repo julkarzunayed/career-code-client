@@ -7,7 +7,9 @@ const NavBar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/">About</NavLink></li>
-        <li><NavLink to="/"></NavLink></li>
+        {
+            user && <li><NavLink to="/myApplications">My Applications</NavLink></li>
+        }
     </>
 
     //Firebase User LogOut

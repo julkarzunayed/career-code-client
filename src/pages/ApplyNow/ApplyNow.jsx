@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
 import axios from 'axios';
 
 const ApplyNow = () => {
     const { id } = useParams();
     const { user } = useAuth();
+    const navigate = useNavigate();
     
 
     const handleJobApply = e => {
@@ -14,7 +15,7 @@ const ApplyNow = () => {
         const linkedIn = form.linkedIn.value;
         const gitHub = form.gitHub.value;
         const resume = form.resume.value;
-        console.log(linkedIn, gitHub, resume);
+        
 
         const application = {
             jobId : id,
@@ -23,11 +24,16 @@ const ApplyNow = () => {
             gitHub,
             resume,
         };
-        console.log(application);
+        // console.log(application);
 
         axios.post(`http://localhost:3000/applications`, application)
             .then(data => {
-                console.log(data.data);
+                // console.log(data.data);
+                if(data.data.insertedId){
+                    alert('Application submitted successfully');
+                    navigate('/myApplications')
+
+                }
             }).catch(error => {
                 console.log(error);
             })
@@ -51,6 +57,7 @@ const ApplyNow = () => {
                     <input 
                     type="url" 
                     name='linkedIn'
+                    required
                     className="input" 
                     placeholder="My awesome page" />
 
@@ -58,6 +65,7 @@ const ApplyNow = () => {
                     <input 
                     type="url" 
                     name='gitHub'
+                    required
                     className="input" 
                     placeholder="my-awesome-page" />
 
@@ -65,6 +73,7 @@ const ApplyNow = () => {
                     <input 
                     type="url" 
                     name='resume'
+                    required
                     className="input" 
                     placeholder="Name" />
 

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Banner from './Banner';
 import HotJobsToDay from './HotJobsToDay/HotJobsToDay';
+import Loader from '../Loader/Loader';
 
 const jobsPromise = fetch('http://localhost:3000/jobs').then(res => res.json());
 const Home = () => {
@@ -13,7 +14,9 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <HotJobsToDay jobsPromise={jobsPromise}></HotJobsToDay>
+            <Suspense fallback={<Loader></Loader>}>
+                <HotJobsToDay jobsPromise={jobsPromise}></HotJobsToDay>
+            </Suspense>
         </div>
     );
 };
