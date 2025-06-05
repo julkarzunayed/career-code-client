@@ -7,8 +7,15 @@ const NavBar = () => {
     const links = <>
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/">About</NavLink></li>
+        {/* for user verifications */}
         {
             user && <li><NavLink to="/myApplications">My Applications</NavLink></li>
+        }
+        {/* For user Roll */}
+        {
+            user && <>
+                <li><NavLink to="/addJob">Add Job</NavLink></li>
+            </>
         }
     </>
 

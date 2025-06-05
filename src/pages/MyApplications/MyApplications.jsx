@@ -1,4 +1,4 @@
-import React, { Suspense, use } from 'react';
+import React, { Suspense } from 'react';
 import MyApplicationsStat from './MyApplicationsStat';
 import MyApplicationsTable from './MyApplicationsTable';
 import Loader from '../Loader/Loader';
