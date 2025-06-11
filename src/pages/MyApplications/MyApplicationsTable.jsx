@@ -2,8 +2,8 @@ import React, { use } from 'react';
 import MyApplicationTableRow from './MyApplicationTableRow';
 import { Link } from 'react-router';
 
-const MyApplicationsTable = ({ applicationPromise }) => {
-    const applicationData = use(applicationPromise);
+const MyApplicationsTable = ({ myApplicationPromise }) => {
+    const applicationData = use(myApplicationPromise);
     const isApplication = Boolean(applicationData.length);
     // console.log(isApplication)
 

@@ -4,14 +4,13 @@ import MyApplicationsTable from './MyApplicationsTable';
 import Loader from '../Loader/Loader';
 import useAuth from '../../Hooks/useAuth';
 import { Link } from 'react-router';
+import { myApplicationPromise } from '../../apis/myApplicationsPromise';
 
-const fetchApplicationPromise = email => {
-    return fetch(`http://localhost:3000/applications?email=${email}`).then(result => result.json());
-}
+
 
 const MyApplications = () => {
     const { user } = useAuth()
-    const applicationPromise = fetchApplicationPromise(user.email);
+    // const applicationPromise = fetchApplicationPromise(user.email);
 
     return (
         <div className=''>
@@ -21,7 +20,7 @@ const MyApplications = () => {
             </div>
             <Suspense fallback={<Loader></Loader>}>
                 <MyApplicationsTable
-                    applicationPromise={applicationPromise}></MyApplicationsTable>
+                    myApplicationPromise={myApplicationPromise(user.email)}></MyApplicationsTable>
             </Suspense>
             <div className="flex justify-center my-5">
                 <Link

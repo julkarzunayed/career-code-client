@@ -28,7 +28,7 @@ const AddJobForm = () => {
         console.log(newJob);
         axios.post(`http://localhost:3000/jobs`, newJob)
             .then(res => {
-                console.log(res.data);
+                // console.log(res);
                 if(res.data.insertedId){
                     alert("Your Job Added successFully");
                 }
@@ -85,6 +85,7 @@ const AddJobForm = () => {
                         <option>Finance</option>
                         <option>Marketing</option>
                         <option>Development</option>
+                        <option>Others</option>
                     </select>
 
                 </fieldset>

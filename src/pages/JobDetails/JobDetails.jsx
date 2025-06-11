@@ -30,7 +30,7 @@ const JobDetails = () => {
     } = useLoaderData();
     // console.log(job);
     return (
-        <div className='p-5 border border-blue-300 rounded-xl'>
+        <div className='p-5 border border-blue-300 rounded-xl m-1'>
             <div className="flex justify-between">
                 <div className="">
                     <h2 className="text-3xl font-bold ">{title}</h2>
@@ -42,7 +42,7 @@ const JobDetails = () => {
             </div>
             <div className="flex items-center justify-center">
                 <figure>
-                    <img src={company_logo} alt="Company Logo" />
+                    <img className='w-12' src={company_logo} alt="Company Logo" />
                 </figure>
                 <h3 className="text-3xl font-bold">{company}</h3>
             </div>
