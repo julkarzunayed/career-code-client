@@ -22,7 +22,7 @@ const LogIn = () => {
         signInUser(email, password)
             .then(result => {
                 navigate(from)
-                console.log(result.user)
+                // console.log(result.user)
             })
             .catch(error => {
                 console.log(error);

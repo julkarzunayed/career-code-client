@@ -3,9 +3,11 @@ import React, { use } from 'react';
 import lottieFile from "../../assets/lotties/register.json"
 import { AuthContext } from '../../context/AuthContext';
 import SocialLogIn from '../Shared/SocialLogIn';
+import { useNavigate } from 'react-router';
 
 const Register = () => {
     const { createUser } = use(AuthContext)
+    const navigate = useNavigate()
     const handleRegister = e => {
 
         e.preventDefault();
@@ -17,7 +19,10 @@ const Register = () => {
         //firebase user Creation
         createUser(email, password)
             .then(result => {
-                console.log(result.user)
+                // console.log(result.user)
+                if(result.user){
+                    navigate(`/`)
+                }
             })
             .catch(error => {
                 console.log(error);
